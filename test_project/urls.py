@@ -1,7 +1,7 @@
 from django.contrib import admin
-from django.urls import path, include
+from django.conf.urls import url, include
 
 urlpatterns = [
-    path('admin/clearcache/', include('clearcache.urls')),
-    path('admin/', admin.site.urls),
+    url(r'^admin/clearcache/', include('clearcache.urls')),
+    url(r'^admin/', admin.site.urls),
 ]

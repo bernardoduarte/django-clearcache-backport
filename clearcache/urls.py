@@ -1,6 +1,6 @@
-from django.urls import path
+from django.conf.urls import url
 from .views import ClearCacheAdminView
 
 urlpatterns = [
-    path('', ClearCacheAdminView.as_view(), name="clearcache_admin"),
+    url(r'^', ClearCacheAdminView.as_view(), name="clearcache_admin"),
 ]

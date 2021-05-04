@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from clearcache.utils import clear_cache
+from ...utils import clear_cache
 
 
 class Command(BaseCommand):
@@ -13,6 +13,6 @@ class Command(BaseCommand):
         cache_name = options['cache_name'] or 'default'
         try:
             clear_cache(cache_name)
-            self.stdout.write(self.style.SUCCESS(f'Successfully cleared "{cache_name}" cache'))
+            self.stdout.write(self.style.SUCCESS('Successfully cleared "{cache_name}" cache'.format(cache_name)))
         except Exception as err:
-            self.stderr.write(self.style.ERROR(err))
+            self.stderr.write(self.style.ERROR(str(err)))

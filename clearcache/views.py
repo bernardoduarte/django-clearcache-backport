@@ -4,8 +4,8 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic import FormView
 
-from clearcache.forms import ClearCacheForm
-from clearcache.utils import clear_cache
+from .forms import ClearCacheForm
+from .utils import clear_cache
 
 
 class ClearCacheAdminView(UserPassesTestMixin, FormView):
@@ -19,19 +19,19 @@ class ClearCacheAdminView(UserPassesTestMixin, FormView):
         return self.request.user.is_superuser
 
     def dispatch(self, request, *args, **kwargs):
-        response = super().dispatch(request, args, kwargs)
+        response = super(ClearCacheAdminView, self).dispatch(request, args, kwargs)
         return response
 
     def form_valid(self, form):
         try:
             cache_name = form.cleaned_data['cache_name']
             clear_cache(cache_name)
-            messages.success(self.request, f"Successfully cleared '{form.cleaned_data['cache_name']}' cache")
+            messages.success(self.request, "Successfully cleared '{}' cache".format(form.cleaned_data['cache_name']))
         except Exception as err:
-            messages.error(self.request, f"Couldn't clear cache, something went wrong. Received error: {err}")
+            messages.error(self.request, "Couldn't clear cache, something went wrong. Received error: {}".format(err))
         return HttpResponseRedirect(self.success_url)
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        context = super(ClearCacheAdminView, self).get_context_data(**kwargs)
         context['title'] = 'Clear cache'
         return context

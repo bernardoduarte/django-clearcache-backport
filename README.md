@@ -1,19 +1,21 @@
-# Django ClearCache 🤠🧹💰 
+This is a backport package from [@timonweb](https://github.com/timonweb)'s [ClearCache](https://github.com/timonweb/django-clearcache) to Python 2.7.
 
-![License](https://img.shields.io/pypi/l/django-clearcache)
-![Django versions](https://img.shields.io/pypi/djversions/django-clearcache)
-![Python versions](https://img.shields.io/pypi/pyversions/django-clearcache)
+# Django ClearCacheBackport
+
+![License](https://img.shields.io/pypi/l/django-clearcache-backport)
+![Django versions](https://img.shields.io/pypi/djversions/django-clearcache-backport)
+![Python versions](https://img.shields.io/pypi/pyversions/django-clearcache-backport)
 
 Allows you to clear Django cache via admin UI or manage.py command.
 
-![demo](https://raw.githubusercontent.com/timonweb/django-clearcache/master/demo.gif)
+![demo](https://raw.githubusercontent.com/bernardoduarte/django-clearcache-backport/master/demo.gif)
 
 ## Installation
 
 1. Install using PIP:
 
       ```
-      pip install django-clearcache
+      pip install django-clearcache-backport
       ```
 
 2. Add **clearcache** to INSTALLED_APPS, make sure it's above `django.contrib.admin`:
@@ -31,8 +33,8 @@ Allows you to clear Django cache via admin UI or manage.py command.
    
        ```
        urlpatterns = [
-           path('admin/clearcache/', include('clearcache.urls')),
-           path('admin/', admin.site.urls),
+           url(r'^admin/clearcache/', include('clearcache.urls')),
+           url(r'^admin/', admin.site.urls),
        ]
        ```
 
@@ -57,8 +59,3 @@ Allows you to clear Django cache via admin UI or manage.py command.
       ```
       python manage.py clearcache cache_name
       ```
-
-## Follow me
-
-1. Check my dev blog with Python and JavaScript tutorials at [https://timonweb.com](https://timonweb.com)
-2. Follow me on twitter [@timonweb](https://twitter.com/timonweb)
